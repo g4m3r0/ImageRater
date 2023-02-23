@@ -1,0 +1,36 @@
+﻿<Window x:Class="ImageRater.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ImageRater"
+        xmlns:viewModels="clr-namespace:ImageRater.ViewModels"
+        mc:Ignorable="d"
+        Title="Image Rater" Height="450" Width="800">
+    <Window.InputBindings>
+        <KeyBinding Key="D1" Command="{Binding SaveDefectCommand}" CommandParameter="Load Defect" />
+        <KeyBinding Key="D2" Command="{Binding SaveDefectCommand}" CommandParameter="Overlay Defect" />
+        <KeyBinding Key="D3" Command="{Binding SaveDefectCommand}" CommandParameter="Minor Overlay Defect" />
+        <KeyBinding Key="D4" Command="{Binding SaveDefectCommand}" CommandParameter="Other Defect" />
+
+        <KeyBinding Key="Backspace" Command="{Binding PreviousImageCommand}" />
+        <KeyBinding Key="Space" Command="{Binding NextImageCommand}" />
+    </Window.InputBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Label HorizontalAlignment="Center" Content="{Binding ScoreText}" FontSize="25" FontWeight="Bold" Foreground="DarkGoldenrod" />
+        <Image Grid.Row="1" Name="image" Stretch="Uniform" Source="{Binding ImageSource}" />
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10" Height="50" >
+            <Button Content="Load Defect [1]" Margin="5" Command="{Binding SaveDefectCommand}" CommandParameter="Load Defect" Focusable="False" FontSize="18" />
+            <Button Content="Overlay Defect [2]" Margin="5" Command="{Binding SaveDefectCommand}" CommandParameter="Overlay Defect" Focusable="False" FontSize="18" />
+            <Button Content="Minor Overlay Defect [3]" Margin="5" Command="{Binding SaveDefectCommand}" CommandParameter="Minor Overlay Defect" Focusable="False" FontSize="18" />
+            <Button Content="Other Defect [4]" Margin="5" Command="{Binding SaveDefectCommand}" CommandParameter="Other Defect" Focusable="False" FontSize="18" />
+            <Button Content="Next Image [Space]" Margin="5" Command="{Binding NextImageCommand}" Focusable="False" FontSize="18" />
+            <Button Content="Previous Image [Backspace]" Margin="5" Command="{Binding PreviousImageCommand}" Focusable="False" FontSize="18" />
+        </StackPanel>
+    </Grid>
+</Window>
