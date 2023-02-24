@@ -101,7 +101,7 @@ public class ImageRaterViewModel : NotifiableBaseObject
     public void SaveRating(string rating)
     {
         string imageName = Path.GetFileName(this.ImagePaths[this.CurrentImageIndex]);
-        _csvWriter.WriteLine($"{imageName}, {rating}");
+        _csvWriter.WriteLine($"{rating}, {imageName}");
         _csvWriter.Flush();
     }
 
