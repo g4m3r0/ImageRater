@@ -1,6 +1,8 @@
 ﻿namespace ImageRater;
 
+using System.IO;
 using System.Windows;
+using System.Windows.Forms;
 using ImageRater.ViewModels;
 
 /// <summary>
@@ -8,11 +10,19 @@ using ImageRater.ViewModels;
 /// </summary>
 public partial class MainWindow : Window
 {
-    public ImageRaterViewModel ImageRater { get; set; }
+    public ImageRaterViewModel? ImageRater { get; set; }
     public MainWindow()
     {
-        this.ImageRater = new("C:\\workingDirectory\\ForschungsPraktikum\\D600\\screenshots\\screenshots\\screen_all_in_one_folder");
-        this.DataContext = this.ImageRater;
+        using (var dialog = new FolderBrowserDialog())
+
+            while (!Directory.Exists(dialog.SelectedPath))
+            {
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    this.ImageRater = new(dialog.SelectedPath);
+                    this.DataContext = this.ImageRater;
+                }
+            }
 
         InitializeComponent();
     }
