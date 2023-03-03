@@ -46,7 +46,7 @@ public class ImageRaterViewModel : NotifiableBaseObject
 
         this.CsvFileName = $".\\ratings-{Path.GetRandomFileName()}.csv";
         _csvWriter = new StreamWriter(this.CsvFileName, true);
-        _csvWriter.WriteLine("Defect, Image Filename");
+        _csvWriter.WriteLine("Defect,Image Filename");
         _csvWriter.Flush();
 
         LoadImage();
@@ -101,7 +101,7 @@ public class ImageRaterViewModel : NotifiableBaseObject
     public void SaveRating(string rating)
     {
         string imageName = Path.GetFileName(this.ImagePaths[this.CurrentImageIndex]);
-        _csvWriter.WriteLine($"{rating}, {imageName}");
+        _csvWriter.WriteLine($"{rating},{imageName}");
         _csvWriter.Flush();
     }
 
